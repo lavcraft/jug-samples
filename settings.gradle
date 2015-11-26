@@ -1,0 +1,8 @@
+rootProject.name = "joker"
+
+//## start includes ####
+include 'hippo-service'
+include 'parrot-service'
+include 'fbi-service'
+include 'gateway-server'
+//## end includes ######

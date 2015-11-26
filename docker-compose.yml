@@ -1,0 +1,55 @@
+gateway-server:
+  image: gateway-server
+  container_name: gateway-server
+  ports:
+    - "9000:9000"
+  restart: always
+
+consul:
+  image: gliderlabs/consul-server
+  container_name: consul
+  ports:
+    - "8400:8400"
+    - "8500:8500"
+    - "53:8600/udp"
+  command: "-bootstrap -advertise 192.168.99.100 -ui-dir /ui"
+  restart: always
+
+registrator:
+  image: gliderlabs/registrator
+  container_name: registrator
+  net: "host"
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  command: "-ip 192.168.99.100 consul://192.168.99.100:8500"
+  restart: always
+
+hippo-service:
+  image: hippo-service
+  dns: 172.17.42.1
+  ports:
+    - "8080"
+  environment:
+    - "SERVICE_NAME=hippo-service"
+    - "SERVICE_CHECK_HTTP=/health"
+    - "SPRING_PROFILES_ACTIVE=consul"
+
+parrot-service:
+  image: parrot-service
+  dns: 172.17.42.1
+  ports:
+    - "8080"
+  environment:
+    - "SERVICE_NAME=parrot-service"
+    - "SERVICE_CHECK_HTTP=/health"
+    - "SPRING_PROFILES_ACTIVE=consul"
+
+fbi-service:
+  image: fbi-service
+  dns: 172.17.42.1
+  ports:
+    - "8080"
+  environment:
+    - "SERVICE_NAME=fbi-service"
+    - "SERVICE_CHECK_HTTP=/health"
+    - "SPRING_PROFILES_ACTIVE=consul"
