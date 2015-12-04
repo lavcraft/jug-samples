@@ -12,7 +12,7 @@
 
 build: `./gradlew build`
 run: `docker-compose up -d`
-rebuild: `./rebuild-<sub-project-name>
+rebuild: `./rebuild-{sub-project-name}`
    
 `rebuild script redeploy app automatically`
    
