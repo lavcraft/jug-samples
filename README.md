@@ -12,14 +12,10 @@
 
 build: `./gradlew build`
 run: `docker-compose up -d`
-rebuild: `./rebuild-<sub-project-name>
-   
-`rebuild script redeploy app automatically`
-   
-example:
-   
-    ./gradlew build && docker-compose up -d && ./rebuild-fbi-service    
+rebuild: `./rebuild-{sub-project-name}`
 
-    
-    
-   
+rebuild script redeploy app automatically
+
+example:
+
+    ./gradlew build && docker-compose up -d && ./rebuild-fbi-service
