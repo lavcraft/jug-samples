@@ -6,7 +6,7 @@ gateway-server:
   restart: always
 
 consul:
-  image: gliderlabs/consul-server
+  image: gliderlabs/consul-server:0.5
   container_name: consul
   ports:
     - "8400:8400"
@@ -26,7 +26,7 @@ registrator:
 
 hippo-service:
   image: hippo-service
-  dns: 172.17.42.1
+  dns: 172.17.0.1
   ports:
     - "8080"
   environment:
@@ -36,7 +36,7 @@ hippo-service:
 
 parrot-service:
   image: parrot-service
-  dns: 172.17.42.1
+  dns: 172.17.0.1
   ports:
     - "8080"
   environment:
@@ -46,7 +46,7 @@ parrot-service:
 
 fbi-service:
   image: fbi-service
-  dns: 172.17.42.1
+  dns: 172.17.0.1
   ports:
     - "8080"
   environment:

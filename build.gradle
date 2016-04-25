@@ -2,7 +2,7 @@ import org.gradle.internal.os.OperatingSystem
 
 buildscript {
   ext {
-    springBootVersion = '1.3.0.RELEASE'
+    springBootVersion = '1.3.3.RELEASE'
     dockerPluginVersion = '0.8.2'
   }
   repositories {
@@ -32,14 +32,14 @@ allprojects {
   apply plugin: 'provided-base'
 
   repositories {
-    mavenCentral()
     jcenter()
+    maven { url "https://repo.spring.io/milestone" } // for using spring Brixton milestones
     maven { url "http://dl.bintray.com/aatarasoff/maven" }
   }
 
   dependencyManagement {
     imports {
-      mavenBom "org.springframework.cloud:spring-cloud-starter-parent:Brixton.M1"
+      mavenBom "org.springframework.cloud:spring-cloud-starter-parent:Brixton.RC2"
     }
 
     dependencies {

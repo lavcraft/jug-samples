@@ -3,7 +3,6 @@ package ru.joker
 import info.developerblog.services.auth.TAuthToken
 import info.developerblog.services.auth.TUnauthorizedException
 import info.developerblog.services.auth.TUser
-import info.developerblog.spring.thrift.api.gateway.annotation.EnableThriftGateway
 import org.apache.thrift.TException
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -16,7 +15,6 @@ import ru.aatarasoff.thrift.api.gateway.core.AuthTokenExchanger
 @SpringBootApplication
 @EnableZuulProxy
 @EnableDiscoveryClient
-@EnableThriftGateway
 @EnableHystrixDashboard
 public class Application {
     public static final int DEFAULT_PADDING = 50
