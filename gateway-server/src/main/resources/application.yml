@@ -1,1 +1,16 @@
-server.port: 9000
+spring.application.name: gateway
+
+logging:
+  level.org.springframework.cloud: DEBUG
+
+server:
+  port: 9000
+
+spring:
+  sleuth:
+    enabled: false
+zipkin:
+  store:
+    type: mem
+
+logging.file: build/zipkin-server.log

@@ -45,11 +45,13 @@ public class HippoApplication {
     @Autowired
     ParrotClient parrotClient
 
-    @ThriftClient(serviceId = 'gateway-server', path = '/fbi-service/api')
+    @ThriftClient(serviceId = 'fbi-service', path = '/api')
     TFbiService.Client client
 
     @RequestMapping(value = '/rent', method = RequestMethod.GET)
     def rent(@RequestParam Optional<Integer> count) {
+      log.warn('hippo!!!')
+
       def hippoRequest = count.orElse(1)
 
       def fee = 0
@@ -61,6 +63,8 @@ public class HippoApplication {
             .doOnNext { println "next $it" }
             .doOnError { println "error $it" }
       }
+
+      log.info('hippo end!!!')
 
       return [hippoRemain: hippoCount.getAndAdd(-1 * hippoRequest),
               parrot_fee : fee]
@@ -89,7 +93,7 @@ class FbiCommand extends HystrixCommand<TFbiResponse> {
 
   @Override
   protected TFbiResponse getFallback() {
-    println "fallback"
+    log.info 'fallback'
     return new TFbiResponse()
   }
 }

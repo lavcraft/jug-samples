@@ -24,6 +24,7 @@ public class ParrotApplication {
 
   @RequestMapping(value = '/fee', method = RequestMethod.GET)
   def fee() {
+    log.warn 'parrot!!!'
     return [parrot_fee: ThreadLocalRandom.current().nextInt(100)]
   }
 }

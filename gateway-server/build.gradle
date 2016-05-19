@@ -5,11 +5,13 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.cloud:spring-cloud-starter-zuul")
 
+    compile ("io.zipkin:zipkin-ui")
+    compile ("io.zipkin.java:zipkin-server")
+
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard'
 
-    compile "org.springframework.cloud:spring-cloud-consul-core"
-    compile "org.springframework.cloud:spring-cloud-consul-discovery"
-    compile "org.springframework.cloud:spring-cloud-consul-config"
+    compile "org.springframework.cloud:spring-cloud-starter-consul-all"
 
-    compile 'info.developerblog.spring.thrift:spring-thrift-api-gateway'
+    compile "org.springframework.integration:spring-integration-jmx"
+    compile "org.springframework:spring-jdbc"
 }

@@ -1,3 +1,11 @@
 fbi-service:
   ribbon:
     listOfServers: localhost:8082
+spring:
+  application:
+    name: parrot-service
+  zipkin:
+      base-url: http://gateway-server.service.consul:9000
+
+logging:
+  level.org.springframework.cloud: DEBUG

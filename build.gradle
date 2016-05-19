@@ -2,7 +2,7 @@ import org.gradle.internal.os.OperatingSystem
 
 buildscript {
   ext {
-    springBootVersion = '1.3.3.RELEASE'
+    springBootVersion = '1.3.5.RELEASE'
     dockerPluginVersion = '0.8.2'
   }
   repositories {
@@ -39,18 +39,15 @@ allprojects {
 
   dependencyManagement {
     imports {
-      mavenBom "org.springframework.cloud:spring-cloud-starter-parent:Brixton.RC2"
+      mavenBom "org.springframework.cloud:spring-cloud-starter-parent:Brixton.RELEASE"
     }
 
     dependencies {
+      dependency 'org.projectlombok:lombok:1.16.8'
       dependency 'org.codehaus.groovy:groovy-all:2.4.5'
       dependency "org.apache.thrift:libthrift:${thriftVersion}"
       dependency 'info.developerblog.spring.thrift:spring-thrift-starter:0.1.3'
       dependency 'info.developerblog.spring.thrift:spring-thrift-api-gateway:0.0.3'
-
-      dependency "org.springframework.cloud:spring-cloud-consul-core:1.0.0.M1"
-      dependency "org.springframework.cloud:spring-cloud-consul-discovery:1.0.0.M1"
-      dependency "org.springframework.cloud:spring-cloud-consul-config:1.0.0.M1"
     }
   }
 }
@@ -113,6 +110,9 @@ subprojects {
 
     compile "org.apache.thrift:libthrift"
     compile 'org.codehaus.groovy:groovy-all'
+
+    compile("org.springframework.cloud:spring-cloud-starter-zipkin")
+    compile("org.springframework.cloud:spring-cloud-sleuth-zipkin")
 
     provided("org.projectlombok:lombok")
 

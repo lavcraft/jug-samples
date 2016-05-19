@@ -1,3 +1,9 @@
+rabbitmq:
+  image: rabbitmq:management
+  ports:
+    - 9672:5672
+    - 15672
+
 gateway-server:
   image: gateway-server
   container_name: gateway-server
@@ -33,6 +39,9 @@ hippo-service:
     - "SERVICE_NAME=hippo-service"
     - "SERVICE_CHECK_HTTP=/health"
     - "SPRING_PROFILES_ACTIVE=consul"
+    - "SPRING_ZIPKIN_BASEURL=http://192.168.99.100:9000"
+    - "SPRING_ZIPKIN_HOST=192.168.99.100"
+    - "SPRING_ZIPKIN_PORT=9000"
 
 parrot-service:
   image: parrot-service
@@ -43,6 +52,7 @@ parrot-service:
     - "SERVICE_NAME=parrot-service"
     - "SERVICE_CHECK_HTTP=/health"
     - "SPRING_PROFILES_ACTIVE=consul"
+    - "SPRING_ZIPKIN_BASEURL=http://192.168.99.100:9000"
 
 fbi-service:
   image: fbi-service
@@ -53,3 +63,4 @@ fbi-service:
     - "SERVICE_NAME=fbi-service"
     - "SERVICE_CHECK_HTTP=/health"
     - "SPRING_PROFILES_ACTIVE=consul"
+    - "SPRING_ZIPKIN_BASEURL=http://192.168.99.100:9000"
